@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Expenses\" />
+    <None Remove="Expenses\Entities\" />
+    <None Remove="Expenses\ValueObjects\" />
+    <None Remove="Expenses\Events\" />
+    <None Remove="Expenses\Repository\" />
+    <None Remove="Budgets\" />
+    <None Remove="Budgets\Entities\" />
+    <None Remove="Budgets\ValueObjects\" />
+    <None Remove="Budgets\Repository\" />
+    <None Remove="Budgets\Events\" />
+    <None Remove="Expenses\Repository\Criteria\" />
+    <None Remove="Expenses\Errors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Expenses\" />
+    <Folder Include="Expenses\Entities\" />
+    <Folder Include="Expenses\ValueObjects\" />
+    <Folder Include="Expenses\Events\" />
+    <Folder Include="Expenses\Repository\" />
+    <Folder Include="Budgets\" />
+    <Folder Include="Budgets\Entities\" />
+    <Folder Include="Budgets\ValueObjects\" />
+    <Folder Include="Budgets\Repository\" />
+    <Folder Include="Budgets\Events\" />
+    <Folder Include="Expenses\Repository\Criteria\" />
+    <Folder Include="Expenses\Errors\" />
+  </ItemGroup>
+</Project>

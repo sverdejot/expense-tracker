@@ -1,0 +1,13 @@
+services:
+    database:
+        image: arm64v8/postgres:16
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_PASSWORD=password
+    audit:
+        image: localstack/localstack
+        ports:
+            - "127.0.0.1:4566:4566"
+            - "127.0.0.1:4510-4559:4510-4559"

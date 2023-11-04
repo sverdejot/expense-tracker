@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Expenses\" />
+    <None Remove="Expenses\Commands\" />
+    <None Remove="Expenses\Queries\" />
+    <None Remove="Expenses\Events\" />
+    <None Remove="Expenses\Commands\Handlers\" />
+    <None Remove="Budgets\" />
+    <None Remove="Budgets\Commands\" />
+    <None Remove="Budgets\Queries\" />
+    <None Remove="Budgets\Events\" />
+    <None Remove="Budgets\Commands\Handlers\" />
+    <None Remove="Expenses\Queries\DTOs\" />
+    <None Remove="Expenses\Queries\Mappings\" />
+    <None Remove="Expenses\Queries\Results\" />
+    <None Remove="Expenses\Queries\Handlers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Expenses\" />
+    <Folder Include="Expenses\Commands\" />
+    <Folder Include="Expenses\Queries\" />
+    <Folder Include="Expenses\Events\" />
+    <Folder Include="Expenses\Commands\Handlers\" />
+    <Folder Include="Budgets\" />
+    <Folder Include="Budgets\Commands\" />
+    <Folder Include="Budgets\Queries\" />
+    <Folder Include="Budgets\Events\" />
+    <Folder Include="Budgets\Commands\Handlers\" />
+    <Folder Include="Expenses\Queries\DTOs\" />
+    <Folder Include="Expenses\Queries\Mappings\" />
+    <Folder Include="Expenses\Queries\Results\" />
+    <Folder Include="Expenses\Queries\Handlers\" />
+  </ItemGroup>
+</Project>
