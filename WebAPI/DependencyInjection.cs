@@ -1,5 +1,7 @@
 ﻿using Mapster;
 using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
+using Persistance;
 using System.Reflection;
 using WebAPI.Middleware;
 
@@ -26,5 +28,16 @@ public static class DependencyInjection
         services.AddScoped<IMapper, ServiceMapper>();
 
         return services;
+    }
+
+    public static void ApplyMigrations(this WebApplication app)
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider
+                .GetRequiredService<ApplicationDbContext>();
+
+            dbContext.Database.Migrate();
+        };
     }
 }

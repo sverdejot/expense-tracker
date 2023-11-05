@@ -41,6 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.ApplyMigrations();
+
 app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();

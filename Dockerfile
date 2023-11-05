@@ -19,4 +19,4 @@ RUN dotnet publish "WebAPI.csproj" -c Release -o /app/publish /p:UseAppHost=fals
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["dotnet", "WebAPI.dll"]

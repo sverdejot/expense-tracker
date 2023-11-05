@@ -1,13 +1,28 @@
 services:
-    database:
-        image: arm64v8/postgres:16
-        restart: always
-        ports:
-            - 5432:5432
-        environment:
-            - POSTGRES_PASSWORD=password
-    audit:
-        image: localstack/localstack
-        ports:
-            - "127.0.0.1:4566:4566"
-            - "127.0.0.1:4510-4559:4510-4559"
+  app:
+    build: .
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    volumes:
+      - ./var/logs:/log
+    ports:
+      - 80:5001
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    image: arm64v8/postgres:16
+    restart: always
+    environment:
+      - PGUSER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=expense_tracker
+    volumes:
+      - ./var/db:/var/lib/postgres
+    healthcheck:
+      test: pg_isready
+      interval: 5s
+      timeout: 2s
+      retries: 5
+      start_period: 3s

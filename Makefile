@@ -15,6 +15,8 @@ help:
 .PHONY: install
 install: ## 🛠️ Restore dependencies
 	@$(DOTNET) restore $(PROJECT_DIR)/$(PROJECT_DIR).csproj
+	@$(DOTNET) tool install --global Swashbuckle.AspNetCore.Cli
+	@$(DOTNET) tool install --global Versionize
 
 .PHONY: build
 build: ## 🏗️ Build the project
