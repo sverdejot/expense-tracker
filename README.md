@@ -88,4 +88,4 @@ Type any breaking change by adding a `!` after `(<scope>)` and before semicolon:
 
 Author:
 
-- Samuel Verdejo <<samuel.verdejo@apexfs.group>>
+- Samuel Verdejo <<contacto@sverdejot.dev>>
