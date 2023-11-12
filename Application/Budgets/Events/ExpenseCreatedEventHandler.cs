@@ -19,7 +19,7 @@ public class ExpenseCreatedEventHandler : IEventHandler<ExpenseCreatedEvent>
 
         foreach (var budget in budgets)
         {
-            var budgetRecord = BudgetRecord.Create(notification.Id, notification.Amount, budget.MaximumAmount.Currency, notification.createdAt);
+            var budgetRecord = BudgetRecord.Create(notification.Id, notification.Amount, budget.MaximumAmount.Currency, notification.CreatedAt);
 
             budget.RecordNew(budgetRecord);
         }

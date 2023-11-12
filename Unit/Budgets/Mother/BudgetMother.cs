@@ -47,7 +47,15 @@ public class BudgetMother
     {
         faker.RuleFor(
             budget => budget.Records,
-            (faker, prev) => BudgetRecordMother.ListToQuantity(prev.MaximumAmount.Amount - 1));
+            (faker, budget) => BudgetRecordMother.RecordListUpToQuantity(budget.MaximumAmount.Amount - 1));
+        return this;
+    }
+
+    public BudgetMother WithRecordsAtLimit()
+    {
+        faker.RuleFor(
+            budget => budget.Records,
+            (faker, budget) => BudgetRecordMother.RecordListUpToQuantity(budget.MaximumAmount.Amount));
         return this;
     }
 }

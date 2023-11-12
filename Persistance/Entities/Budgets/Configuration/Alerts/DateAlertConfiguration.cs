@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistance;
 
-public class DateAlertConfiguration : IEntityTypeConfiguration<DateAlert>
+public class DateAlertConfiguration : IEntityTypeConfiguration<DateBudgetAlert>
 {
-    public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<DateAlert> builder)
+    public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<DateBudgetAlert> builder)
     {
         builder.HasBaseType<BudgetAlert>();
 

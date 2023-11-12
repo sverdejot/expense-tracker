@@ -32,6 +32,8 @@ public class TestCreateBudgetCommandHandler
         await handler.Handle(command);
 
         // Then
-        mocker.GetMock<IBudgetRepository>().Verify(repo => repo.Add(It.IsAny<Budget>()), Times.Exactly(1));
+        mocker.GetMock<IBudgetRepository>()
+            .Verify(repo => repo.Add(It.IsAny<Budget>()), Times.Once);
+        
     }
 }

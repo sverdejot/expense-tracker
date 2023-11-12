@@ -2,18 +2,18 @@
 
 namespace Domain;
 
-public class DateAlert : BudgetAlert
+public class DateBudgetAlert : BudgetAlert
 {
     public DateTime AlertingDate { get; private set; }
 
-    private DateAlert()
+    private DateBudgetAlert()
     {
     }
 
-    protected DateAlert(DateTime alertingDate) =>
+    protected DateBudgetAlert(DateTime alertingDate) =>
         AlertingDate = alertingDate;
 
-    public static DateAlert Create(DateTime alertingDate) =>
+    public static DateBudgetAlert Create(DateTime alertingDate) =>
         new(alertingDate);
 
     protected override bool Eval() =>

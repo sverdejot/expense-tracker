@@ -28,7 +28,7 @@ public class BudgetRecordMother
         return faker.Generate();
     }
 
-    public static List<BudgetRecord> ListToQuantity(decimal quantity = 1_000) 
+    public static List<BudgetRecord> RecordListUpToQuantity(decimal quantity = 1_000) 
     {
         var mother = new BudgetRecordMother();
         var currentSum = 0;

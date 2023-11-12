@@ -27,6 +27,6 @@ public class TestCreateExpenseCommandHandler
 
         // Then
         mocker.GetMock<IExpenseRepository>()
-            .Verify(repo => repo.Add(It.IsAny<Expense>()), Times.Exactly(1));
+            .Verify(repo => repo.Add(It.IsAny<Expense>()), Times.Once);
     }
 }
