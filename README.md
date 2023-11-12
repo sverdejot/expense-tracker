@@ -8,8 +8,8 @@ Expense Tracker is a .NET WebAPI project built on Clean Architecture and Domain-
 
 ## Technologies
 
-- .NET 7.0
-- EntityFramework 7.0
+- .NET 8.0
+- EntityFramework 8.0
 - CQRS:
     - MediatR
     - FluentValidations
