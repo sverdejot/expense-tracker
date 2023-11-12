@@ -1,4 +1,5 @@
-﻿using Bogus;
+﻿using System.Diagnostics.Tracing;
+using Bogus;
 using Bogus.Extensions.Norway;
 using Domain.Budget;
 using Domain.Shared.ValueObjects;
@@ -28,42 +29,25 @@ public class BudgetMother
     public static Budget Random() =>
         new BudgetMother().Build();
 
+    public BudgetMother WithAmount(decimal quantity)
+    {
+        faker.RuleFor(
+            budget => budget.MaximumAmount,
+            faker => BudgetAmount.Create(quantity, faker.PickRandom<Currency>()));
+        return this;
+    }
+
     public BudgetMother WithId()
     {
         faker.RuleFor(budget => budget.Id, BudgetId.Create(Guid.NewGuid()));
         return this;
     }
 
-    public BudgetMother WithRecordsReachingLimit(int offsetToMax = 1)
+    public BudgetMother WithRecordsReachingLimit()
     {
-        // TODO: Such a mess
         faker.RuleFor(
             budget => budget.Records,
-            (faker, budget) =>
-            {
-                var almostMaximumAmount = budget.MaximumAmount.Amount - offsetToMax;
-                var rec = new List<BudgetRecord>();
-                while (almostMaximumAmount > 0)
-                {
-                    var newRecord = BudgetRecordMother.Random();
-
-                    if (almostMaximumAmount - newRecord.Amount < 0)
-                    {
-                        var lastRecord = new BudgetRecordMother()
-                            .WithQuantity(almostMaximumAmount)
-                            .Build();
-
-                        rec.Add(lastRecord);
-                        break;
-                    }
-
-                    rec.Add(newRecord);
-                }
-
-                return rec;
-            }
-        );
-
+            (faker, prev) => BudgetRecordMother.ListToQuantity(prev.MaximumAmount.Amount - 1));
         return this;
     }
 }
