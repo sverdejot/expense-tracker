@@ -16,29 +16,17 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
                 src => src.Value,
                 raw => BudgetId.Create(raw));
 
-        // TODO: Complex types (available soon)
-        builder.Property(budget => budget.MaximumAmount)
-            .HasConversion(
-                src => JsonConvert.SerializeObject(src, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                }),
-                raw => JsonConvert.DeserializeObject<BudgetAmount>(raw, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                })!);
+        builder.ComplexProperty(budget => budget.MaximumAmount);
 
-        // TODO: Complex types (available soon)
-        builder.Property(budget => budget.Period)
-            .HasConversion(
-                src => JsonConvert.SerializeObject(src, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                }),
-                raw => JsonConvert.DeserializeObject<BudgetPeriod>(raw, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                })!);
+        builder.ComplexProperty(budget => budget.Period);
+
+        // Configured no navigation to parent entity since its the aggregate
+        // The info will be populated on each retrieve
+        builder.HasMany(budget => budget.Records)
+            .WithMany();
+
+        builder.HasMany(budget => budget.Alerts)
+            .WithMany();
     }
 }
 

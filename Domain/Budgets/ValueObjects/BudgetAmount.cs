@@ -4,9 +4,9 @@ namespace Domain.Budget;
 
 public record BudgetAmount
 {
-    public Decimal Amount { get; }
+    public Decimal Amount { get; private set; }
 
-    public Currency Currency { get; }
+    public Currency Currency { get; private set; }
 
     private BudgetAmount(Decimal Amount, Currency currency)
     {

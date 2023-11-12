@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build project and run Architectural and Unit testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.x
+          dotnet-quality: preview
+      
+      - name: 🧱 Install dependencies
+        run: make install
+      
+      - name: 🏗️ Build project
+        run: make build
+
+      - name: 🧪 Run tests
+        run: make test

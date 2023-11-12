@@ -4,13 +4,13 @@ namespace Domain.Budget;
 
 public record BudgetRecord
 {
-    public Guid ExpenseId { get; }
+    public Guid ExpenseId { get; private set; }
 
-    public Decimal Amount { get; }
+    public Decimal Amount { get; private set; }
 
-    public Currency Currency { get; }
+    public Currency Currency { get; private set; }
 
-    public DateTime Created { get; }
+    public DateTime Created { get; private set; }
 
     protected BudgetRecord(Guid expenseId, Decimal amount, Currency currency, DateTime created)
     {

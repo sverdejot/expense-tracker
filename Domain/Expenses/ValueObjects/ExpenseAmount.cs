@@ -4,11 +4,11 @@ namespace Domain.Expenses;
 
 public record ExpenseAmount
 {
-    public Decimal Quantity { get; }
+    public Decimal Quantity { get; private set; }
 
-    public Currency Currency { get; }
+    public Currency Currency { get; private set; }
 
-    private ExpenseAmount(Decimal quantity, Currency currency)
+    protected ExpenseAmount(Decimal quantity, Currency currency)
     {
         Quantity = quantity;
         Currency = currency;

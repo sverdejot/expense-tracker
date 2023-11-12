@@ -2,9 +2,9 @@
 
 public record class ExpenseId
 {
-    public Guid Value { get; }
+    public Guid Value { get; private set; }
 
-    private ExpenseId(Guid value)
+    protected ExpenseId(Guid value)
     {
         Value = value;
     }

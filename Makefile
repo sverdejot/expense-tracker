@@ -1,4 +1,4 @@
-﻿DOTNET = $(shell which dotnet)
+﻿DOTNET = "dotnet"
 SWAGGER_CLI = ~/.dotnet/tools/swagger
 PROJECT_DIR = WebAPI
 BUILD_DIR = ./build
@@ -14,13 +14,12 @@ help:
 
 .PHONY: install
 install: ## 🛠️ Restore dependencies
-	@$(DOTNET) restore $(PROJECT_DIR)/$(PROJECT_DIR).csproj
-	@$(DOTNET) tool install --global Swashbuckle.AspNetCore.Cli
-	@$(DOTNET) tool install --global Versionize
+	@dotnet restore $(PROJECT_DIR)/$(PROJECT_DIR).csproj
+	@dotnet tool install --global Versionize
 
 .PHONY: build
 build: ## 🏗️ Build the project
-	@$(DOTNET) build $(PROJECT_DIR)/$(PROJECT_DIR).csproj -o $(BUILD_DIR)
+	@dotnet build $(PROJECT_DIR)/$(PROJECT_DIR).csproj -o $(BUILD_DIR)
 
 .PHONY: generate-api-spec
 generate-api-spec: __install_swagger_cli ## 📝 Generate API spec using Swagger
@@ -28,9 +27,13 @@ generate-api-spec: __install_swagger_cli ## 📝 Generate API spec using Swagger
 
 .PHONY: __install_swagger_cli
 __install_swagger_cli: ## 🛠️ Install Swagger CLI tool
-	@$(DOTNET) tool install --global Swashbuckle.AspNetCore.Cli
+	@dotnet tool install --global Swashbuckle.AspNetCore.Cli
 
 .PHONY: clean
 clean: ## 🗑️ Clean up generated files
 	@rm -rf $(BUILD_DIR)
 	@git clean -X -f -d
+
+.PHONY: test
+test: ## 🧪 Run tests
+	@dotnet test

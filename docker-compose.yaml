@@ -20,6 +20,8 @@ services:
       - POSTGRES_DB=expense_tracker
     volumes:
       - ./var/db:/var/lib/postgres
+    ports:
+      - 5432:5432
     healthcheck:
       test: pg_isready
       interval: 5s

@@ -2,9 +2,9 @@
 
 public record ExpenseDescription
 {
-    public string Value { get; }
+    public string Value { get; private set; }
 
-    private ExpenseDescription(string value)
+    protected ExpenseDescription(string value)
     {
         Value = value;
     }

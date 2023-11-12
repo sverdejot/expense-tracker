@@ -2,9 +2,9 @@
 
 public record BudgetPeriod
 {
-    private DateTime StartDate { get; set; } = DateTime.UtcNow;
+    public DateTime StartDate { get; private set; } = DateTime.UtcNow;
 
-    private DateTime EndDate { get; set; }
+    public DateTime EndDate { get; private set; }
 
     public bool IsExpired =>
         StartDate >= DateTime.Now && DateTime.Now <= EndDate;
@@ -14,10 +14,10 @@ public record BudgetPeriod
         EndDate = end;
     }
 
-    protected BudgetPeriod(DateTime start, DateTime end)
+    protected BudgetPeriod(DateTime startDate, DateTime endDate)
     {
-        StartDate = start;
-        EndDate = end;
+        StartDate = startDate;
+        EndDate = endDate;
     }
 
     public static BudgetPeriod Create(DateTime startDate, DateTime endDate)

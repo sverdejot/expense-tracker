@@ -21,18 +21,7 @@ public class ExpenseConfiguration : IEntityTypeConfiguration<Expense>
                 src => src.Value,
                 raw => ExpenseId.Create(raw));
 
-        // Until ComplexTypes (available soon), JSON is enough
-        builder.Property(expense => expense.Amount)
-            .HasColumnName(nameof(Expense.Amount))
-            .HasConversion(
-                src => JsonConvert.SerializeObject(src, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                }),
-                raw => JsonConvert.DeserializeObject<ExpenseAmount>(raw, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                })!);
+        builder.ComplexProperty(expense => expense.Amount);
 
         builder.Property(expense => expense.Description)
             .HasColumnName(nameof(Expense.Description))
