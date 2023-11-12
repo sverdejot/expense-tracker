@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Persistance.Outbox;
-using Domain.Budget;
+using Domain.Budgets;
 using Domain.Expenses;
 
 namespace Persistance;

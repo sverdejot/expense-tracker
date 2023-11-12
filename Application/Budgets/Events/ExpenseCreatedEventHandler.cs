@@ -1,5 +1,5 @@
 ﻿using Application.Shared;
-using Domain.Budget;
+using Domain.Budgets;
 using Domain.Expenses;
 
 namespace Application;

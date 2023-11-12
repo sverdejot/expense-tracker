@@ -10,7 +10,7 @@ using System.Reflection;
 using Persistance.Expenses;
 using Persistance.Budgets;
 using Domain.Expenses;
-using Domain.Budget;
+using Domain.Budgets;
 
 namespace Persistance;
 public static class DependencyInjection

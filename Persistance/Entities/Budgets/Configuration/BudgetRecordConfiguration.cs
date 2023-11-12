@@ -1,4 +1,4 @@
-﻿using Domain.Budget;
+﻿using Domain.Budgets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,7 +13,7 @@ public class BudgetRecordConfiguration : IEntityTypeConfiguration<BudgetRecord>
         builder.Property<Guid>(identityProperty)
             .ValueGeneratedOnAdd()
             .IsRequired();
-            
+
         builder.HasKey(identityProperty);
         builder.HasIndex(identityProperty);
     }

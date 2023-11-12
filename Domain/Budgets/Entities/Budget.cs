@@ -1,6 +1,6 @@
 ﻿using Domain.Shared.Base;
 
-namespace Domain.Budget;
+namespace Domain.Budgets;
 
 public class Budget : AggregateRoot<Budget>
 {
@@ -67,7 +67,7 @@ public class Budget : AggregateRoot<Budget>
 			.Where(alert => alert.Eval(this))
 			.Select(alert => alert.GenerateEvent(this))
 			.ToList();
-		
+
 		foreach (var evnt in events)
 		{
 			RecordEvent(evnt);

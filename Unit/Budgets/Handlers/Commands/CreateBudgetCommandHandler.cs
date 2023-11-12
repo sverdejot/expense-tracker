@@ -1,5 +1,5 @@
 ﻿using Application.Budgets;
-using Domain.Budget;
+using Domain.Budgets;
 using Moq;
 using Moq.AutoMock;
 
@@ -34,6 +34,6 @@ public class TestCreateBudgetCommandHandler
         // Then
         mocker.GetMock<IBudgetRepository>()
             .Verify(repo => repo.Add(It.IsAny<Budget>()), Times.Once);
-        
+
     }
 }

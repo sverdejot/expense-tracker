@@ -1,6 +1,6 @@
 ﻿using Domain.Shared.ValueObjects;
 
-namespace Domain.Budget;
+namespace Domain.Budgets;
 
 public record BudgetRecord
 {

@@ -1,5 +1,5 @@
 ﻿using Domain;
-using Domain.Budget;
+using Domain.Budgets;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistance;

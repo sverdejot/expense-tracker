@@ -1,6 +1,6 @@
 ﻿using Domain.Shared.Base;
 
-namespace Domain.Budget;
+namespace Domain.Budgets;
 
 public abstract class BudgetAlert
 {

@@ -1,6 +1,6 @@
 ﻿using Application;
 using Domain;
-using Domain.Budget;
+using Domain.Budgets;
 using Domain.Expenses;
 using FluentAssertions;
 using Microsoft.VisualBasic;
@@ -41,7 +41,7 @@ public class TestExpenseCreatedEventHandler
         // Then
         mocker.GetMock<IBudgetRepository>()
             .Verify(repo => repo.FindAll(), Times.Once);
-        
+
         var expectedRecord = budget.Records
             .Where(record => record.ExpenseId == evnt.Id)
             .FirstOrDefault();
@@ -119,7 +119,7 @@ public class TestExpenseCreatedEventHandler
         budget.GetEvents()
             .Should()
             .HaveCount(1);
-        
+
         Assert.True(budget.GetEvents().All(evnt => evnt is DateOverdueAlertEvent));
     }
 

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.Tracing;
 using Bogus;
 using Bogus.Extensions.Norway;
-using Domain.Budget;
+using Domain.Budgets;
 using Domain.Shared.ValueObjects;
 using Unit.Random;
 

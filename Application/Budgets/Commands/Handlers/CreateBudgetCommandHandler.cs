@@ -1,4 +1,4 @@
-﻿using Domain.Budget;
+﻿using Domain.Budgets;
 using Application.Shared.Command;
 
 namespace Application.Budgets;

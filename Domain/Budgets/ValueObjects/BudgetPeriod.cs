@@ -1,4 +1,4 @@
-﻿namespace Domain.Budget;
+﻿namespace Domain.Budgets;
 
 public record BudgetPeriod
 {

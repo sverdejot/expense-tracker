@@ -56,12 +56,12 @@ namespace Persistance.Migrations
                     b.ToTable("BudgetBudgetRecord");
                 });
 
-            modelBuilder.Entity("Domain.Budget.Budget", b =>
+            modelBuilder.Entity("Domain.Budgets.Budget", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.ComplexProperty<Dictionary<string, object>>("MaximumAmount", "Domain.Budget.Budget.MaximumAmount#BudgetAmount", b1 =>
+                    b.ComplexProperty<Dictionary<string, object>>("MaximumAmount", "Domain.Budgets.Budget.MaximumAmount#BudgetAmount", b1 =>
                         {
                             b1.IsRequired();
 
@@ -72,7 +72,7 @@ namespace Persistance.Migrations
                                 .HasColumnType("integer");
                         });
 
-                    b.ComplexProperty<Dictionary<string, object>>("Period", "Domain.Budget.Budget.Period#BudgetPeriod", b1 =>
+                    b.ComplexProperty<Dictionary<string, object>>("Period", "Domain.Budgets.Budget.Period#BudgetPeriod", b1 =>
                         {
                             b1.IsRequired();
 
@@ -88,7 +88,7 @@ namespace Persistance.Migrations
                     b.ToTable("Budgets");
                 });
 
-            modelBuilder.Entity("Domain.Budget.BudgetAlert", b =>
+            modelBuilder.Entity("Domain.Budgets.BudgetAlert", b =>
                 {
                     b.Property<Guid>("BudgetAlertId")
                         .ValueGeneratedOnAdd()
@@ -110,7 +110,7 @@ namespace Persistance.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("Domain.Budget.BudgetRecord", b =>
+            modelBuilder.Entity("Domain.Budgets.BudgetRecord", b =>
                 {
                     b.Property<Guid>("BudgetRecordId")
                         .ValueGeneratedOnAdd()
@@ -193,7 +193,7 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.DateAlert", b =>
                 {
-                    b.HasBaseType("Domain.Budget.BudgetAlert");
+                    b.HasBaseType("Domain.Budgets.BudgetAlert");
 
                     b.Property<DateTime>("AlertingDate")
                         .HasColumnType("timestamp with time zone");
@@ -203,13 +203,13 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("BudgetBudgetAlert", b =>
                 {
-                    b.HasOne("Domain.Budget.BudgetAlert", null)
+                    b.HasOne("Domain.Budgets.BudgetAlert", null)
                         .WithMany()
                         .HasForeignKey("AlertsBudgetAlertId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Budget.Budget", null)
+                    b.HasOne("Domain.Budgets.Budget", null)
                         .WithMany()
                         .HasForeignKey("BudgetId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -218,13 +218,13 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("BudgetBudgetRecord", b =>
                 {
-                    b.HasOne("Domain.Budget.Budget", null)
+                    b.HasOne("Domain.Budgets.Budget", null)
                         .WithMany()
                         .HasForeignKey("BudgetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Budget.BudgetRecord", null)
+                    b.HasOne("Domain.Budgets.BudgetRecord", null)
                         .WithMany()
                         .HasForeignKey("RecordsBudgetRecordId")
                         .OnDelete(DeleteBehavior.Cascade)
