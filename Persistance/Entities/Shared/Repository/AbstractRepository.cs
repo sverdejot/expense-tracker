@@ -9,6 +9,7 @@ internal abstract class AbstractRepository<TEntity>
     where TEntity : AggregateRoot<TEntity>
 {
     protected readonly ApplicationDbContext _context;
+
     public AbstractRepository(ApplicationDbContext dbContext)
     {
         this._context = dbContext;

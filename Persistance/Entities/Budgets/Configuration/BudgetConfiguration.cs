@@ -14,7 +14,7 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
         builder.Property(budget => budget.Id)
             .HasConversion(
                 src => src.Value,
-                raw => new BudgetId(raw));
+                raw => BudgetId.Create(raw));
 
         // TODO: Complex types (available soon)
         builder.Property(budget => budget.MaximumAmount)

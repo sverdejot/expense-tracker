@@ -1,13 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>2e94d27e-d5c0-4af4-8ca2-f7b35086d1f9</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
@@ -22,28 +20,21 @@
     <None Remove="Controllers\Expenses\Mappings\" />
     <None Remove="Controllers\Expenses\Mappings\DTOs\" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
     <PackageReference Include="Serilog" Version="3.0.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     <PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0-rc.2.23480.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0-rc.2.23480.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Persistance\Persistance.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Controllers\Expenses\" />
     <Folder Include="Controllers\Budgets\" />

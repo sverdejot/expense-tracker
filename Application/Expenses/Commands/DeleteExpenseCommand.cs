@@ -2,4 +2,4 @@
 
 namespace Application.Expenses.Commands;
 
-public record DeleteExpenseCommand(Guid Id) : ICommand;
+public sealed record DeleteExpenseCommand(Guid Id) : ICommand;

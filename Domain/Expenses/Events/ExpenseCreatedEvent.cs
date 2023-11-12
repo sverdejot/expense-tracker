@@ -2,4 +2,4 @@
 
 namespace Domain.Expenses;
 
-public record ExpenseCreatedEvent(ExpenseId Id) : IDomainEvent;
+public sealed record ExpenseCreatedEvent(Guid Id, Decimal Amount, DateTime createdAt) : IDomainEvent;

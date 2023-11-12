@@ -8,14 +8,14 @@ public class DeleteExpenseCommandHandler : ICommandHandler<DeleteExpenseCommand>
 {
     private readonly IExpenseRepository _expenseRepository;
 
-	public DeleteExpenseCommandHandler(IExpenseRepository expenseRepository)
-	{
-        _expenseRepository = expenseRepository;
-	}
-
-    public async Task Handle(DeleteExpenseCommand request, CancellationToken cancellationToken)
+    public DeleteExpenseCommandHandler(IExpenseRepository expenseRepository)
     {
-        var id = new ExpenseId(request.Id);
+        _expenseRepository = expenseRepository;
+    }
+
+    public async Task Handle(DeleteExpenseCommand request, CancellationToken cancellationToken = default)
+    {
+        var id = ExpenseId.Create(request.Id);
         var criteria = new FindExpenseByIdCriteria(id);
 
         var expense = await _expenseRepository.MatchFirstOrDefault(criteria);

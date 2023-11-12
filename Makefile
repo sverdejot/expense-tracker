@@ -33,4 +33,4 @@ __install_swagger_cli: ## 🛠️ Install Swagger CLI tool
 .PHONY: clean
 clean: ## 🗑️ Clean up generated files
 	@rm -rf $(BUILD_DIR)
-	@git rm -X -f -d
+	@git clean -X -f -d

@@ -4,11 +4,15 @@ namespace Domain.Expenses;
 
 public class Expense : AggregateRoot<Expense>
 {
-    public ExpenseId Id { get; private set; }
+	public ExpenseId Id { get; private set; }
 
 	public ExpenseAmount Amount { get; private set; }
 
 	public ExpenseDescription Description { get; private set; }
+
+	private Expense()
+	{
+	}
 
 	protected Expense(ExpenseId id, ExpenseAmount amount, ExpenseDescription description)
 	{
@@ -21,7 +25,7 @@ public class Expense : AggregateRoot<Expense>
 	{
 		var expense = new Expense(id: id, amount: amount, description: description);
 
-		expense.RecordEvent(new ExpenseCreatedEvent(id));
+		expense.RecordEvent(new ExpenseCreatedEvent(id.Value, amount.Quantity, DateTime.Now));
 
 		return expense;
 	}

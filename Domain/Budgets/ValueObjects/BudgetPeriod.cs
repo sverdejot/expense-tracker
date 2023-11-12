@@ -9,7 +9,7 @@ public record BudgetPeriod
     public bool IsExpired =>
         StartDate >= DateTime.Now && DateTime.Now <= EndDate;
 
-    private BudgetPeriod(DateTime end)
+    protected BudgetPeriod(DateTime end)
     {
         EndDate = end;
     }
@@ -23,6 +23,11 @@ public record BudgetPeriod
     public static BudgetPeriod Create(DateTime startDate, DateTime endDate)
     {
         return new(startDate, endDate);
+    }
+
+    public static BudgetPeriod Create(DateTime endDate)
+    {
+        return new(endDate);
     }
 
     public static BudgetPeriod CreateMonthly()

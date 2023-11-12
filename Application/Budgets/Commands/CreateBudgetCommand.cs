@@ -3,4 +3,4 @@ using Application.Shared.Command;
 
 namespace Application.Budgets;
 
-public record CreateBudgetCommand(Guid Id, Decimal MaximumAmount, Currency Currency) : ICommand;
+public sealed record CreateBudgetCommand(Guid Id, Decimal MaximumAmount, Currency Currency) : ICommand;

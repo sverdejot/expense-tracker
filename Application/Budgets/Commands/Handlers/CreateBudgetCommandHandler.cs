@@ -12,10 +12,10 @@ public class CreateBudgetCommandHandler : ICommandHandler<CreateBudgetCommand>
         _budgetRepository = budgetRepository;
     }
 
-    public async Task Handle(CreateBudgetCommand request, CancellationToken cancellationToken)
+    public async Task Handle(CreateBudgetCommand request, CancellationToken cancellationToken = default)
     {
-        var id = new BudgetId(request.Id);
-        var amount = new BudgetAmount(request.MaximumAmount, request.Currency);
+        var id = BudgetId.Create(request.Id);
+        var amount = BudgetAmount.Create(request.MaximumAmount, request.Currency);
         var period = BudgetPeriod.CreateMonthly();
 
         var budget = Budget.Create(id, amount, period);

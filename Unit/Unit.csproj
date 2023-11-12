@@ -1,16 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="Moq" Version="4.20.69" />
@@ -24,18 +20,22 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Bogus" Version="34.0.2" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Remove="Users\Handler\Query\" />
-    <None Remove="Users\Handler\Command\" />
+    <None Remove="Expenses\" />
+    <None Remove="Expenses\Handlers\" />
+    <None Remove="Expenses\Random\" />
+    <None Remove="Expenses\Mother\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Users\Handler\Query\" />
-    <Folder Include="Users\Handler\Command\" />
+    <Folder Include="Expenses\" />
+    <Folder Include="Expenses\Handlers\" />
+    <Folder Include="Expenses\Random\" />
+    <Folder Include="Expenses\Mother\" />
+    <Folder Include="Random/" />
   </ItemGroup>
 </Project>

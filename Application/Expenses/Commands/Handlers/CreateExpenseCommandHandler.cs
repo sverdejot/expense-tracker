@@ -12,11 +12,11 @@ public class CreateExpenseCommandHandler : ICommandHandler<CreateExpenseCommand>
         _expenseRepository = expenseRepository;
     }
 
-    public async Task Handle(CreateExpenseCommand request, CancellationToken cancellationToken)
+    public async Task Handle(CreateExpenseCommand request, CancellationToken cancellationToken = default)
     {
-        var id = new ExpenseId(request.Id);
-        var amount = new ExpenseAmount(request.Amount, request.Currency);
-        var description = new ExpenseDescription(request.Description);
+        var id = ExpenseId.Create(request.Id);
+        var amount = ExpenseAmount.Create(request.Amount, request.Currency);
+        var description = ExpenseDescription.Create(request.Description);
 
         var expense = Expense.Create(id: id, amount: amount, description: description);
 

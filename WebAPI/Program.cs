@@ -35,13 +35,11 @@ var app = builder.Build();
 app.UseCustomMiddlewares();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.ApplyMigrations();
 
 app.UseSerilogRequestLogging();
 

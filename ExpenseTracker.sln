@@ -7,17 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FA2105A6-15E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E3F7B8B5-6A03-4BAC-A0BB-45906D7A3177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{14DACD89-E0A3-4156-BC3E-DBA64CA55824}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{14DACD89-E0A3-4156-BC3E-DBA64CA55824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{015FBA2E-798C-4425-92FA-BD97F8A7A44A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{015FBA2E-798C-4425-92FA-BD97F8A7A44A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{3A295B35-4F3A-45C7-AB79-ACFABA70BED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{3A295B35-4F3A-45C7-AB79-ACFABA70BED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Persistance\Persistance.csproj", "{D544ACC9-46D8-4D86-9113-CFAAF7A2FCCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistance", "Persistance\Persistance.csproj", "{D544ACC9-46D8-4D86-9113-CFAAF7A2FCCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{31334C8F-F649-4188-BA9B-7967C8766AA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{31334C8F-F649-4188-BA9B-7967C8766AA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit", "Unit\Unit.csproj", "{4A4B2017-EC3E-4E31-BF5B-0CCBB3719127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unit", "Unit\Unit.csproj", "{4A4B2017-EC3E-4E31-BF5B-0CCBB3719127}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5C2F1EAD-BDDF-4AEA-BDA3-9FD868D2D6F3}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile = Dockerfile
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture", "Architecture\Architecture.csproj", "{BE569021-A074-4DD6-BD8E-93B2B0B92A8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{4A4B2017-EC3E-4E31-BF5B-0CCBB3719127}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A4B2017-EC3E-4E31-BF5B-0CCBB3719127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A4B2017-EC3E-4E31-BF5B-0CCBB3719127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE569021-A074-4DD6-BD8E-93B2B0B92A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE569021-A074-4DD6-BD8E-93B2B0B92A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE569021-A074-4DD6-BD8E-93B2B0B92A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE569021-A074-4DD6-BD8E-93B2B0B92A8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{D544ACC9-46D8-4D86-9113-CFAAF7A2FCCC} = {FA2105A6-15E6-4A91-8F2E-BE918036871B}
 		{31334C8F-F649-4188-BA9B-7967C8766AA6} = {FA2105A6-15E6-4A91-8F2E-BE918036871B}
 		{4A4B2017-EC3E-4E31-BF5B-0CCBB3719127} = {E3F7B8B5-6A03-4BAC-A0BB-45906D7A3177}
+		{BE569021-A074-4DD6-BD8E-93B2B0B92A8C} = {E3F7B8B5-6A03-4BAC-A0BB-45906D7A3177}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8331931E-5B82-4E08-B174-288754D37D23}

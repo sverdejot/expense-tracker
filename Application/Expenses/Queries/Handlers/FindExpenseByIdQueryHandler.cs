@@ -11,15 +11,16 @@ public class FindExpenseByIdQueryHandler : IQueryHandler<FindExpenseByIdQuery, F
 
     private readonly IMapper _mapper;
 
-	public FindExpenseByIdQueryHandler(IExpenseRepository expenseRepository, IMapper mapper)
-	{
+    public FindExpenseByIdQueryHandler(IExpenseRepository expenseRepository, IMapper mapper)
+    {
         _expenseRepository = expenseRepository;
         _mapper = mapper;
-	}
+    }
 
     public async Task<FindExpenseByIdResult> Handle(FindExpenseByIdQuery request, CancellationToken cancellationToken)
     {
-        var criteria = new FindExpenseByIdCriteria(new ExpenseId(request.Id));
+        var id = ExpenseId.Create(request.Id);
+        var criteria = new FindExpenseByIdCriteria(id);
 
         var expense = await _expenseRepository.MatchFirstOrDefault(criteria);
 
