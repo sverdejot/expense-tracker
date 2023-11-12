@@ -93,4 +93,34 @@ public class TestExpenseCreatedEventHandler
         Assert.ThrowsAsync<BudgetIsBlockedException>(handle);
     }
 
+    [Fact]
+    public async void Handle_ShouldFireDateOverdueEvent_WhenExpenseCreatedWithDateAlertOverdue()
+    {
+        // Given
+        var alert = BudgetAlertsMother.CreateDateOverdue();
+
+        var budget = new BudgetMother()
+            .WithAlert(alert)
+            .Build();
+
+        mocker.GetMock<IBudgetRepository>()
+            .Setup(repo => repo.FindAll())
+            .ReturnsAsync(new List<Budget>() { budget });
+
+        var evnt = ExpenseCreatedEventMother.Random();
+
+        // When
+        await handler.Handle(evnt);
+
+        // Then
+        var alertEvents = budget.GetEvents()
+            .Where(evnt => evnt is AlertEvent);
+
+        budget.GetEvents()
+            .Should()
+            .HaveCount(1);
+        
+        Assert.True(budget.GetEvents().All(evnt => evnt is DateOverdueAlertEvent));
+    }
+
 }

@@ -7,7 +7,7 @@ public class ExpenseCreatedEventMother
 {
     private readonly Faker<ExpenseCreatedEvent> faker = new Faker<ExpenseCreatedEvent>()
         .RuleFor(evnt => evnt.Id, faker => faker.Random.Guid())
-        .RuleFor(evnt => evnt.Amount, faker => faker.Random.Decimal(max: Decimal.MaxValue))
+        .RuleFor(evnt => evnt.Amount, faker => faker.Random.Decimal(max: 10_0))
         .RuleFor(evnt => evnt.CreatedAt, faker => faker.Date.Past());
 
     public ExpenseCreatedEvent Build() =>
@@ -30,4 +30,7 @@ public class ExpenseCreatedEventMother
         faker.RuleFor(evnt => evnt.Amount, faker => faker.Random.Decimal(max: new decimal(max)));
         return this;
     }
+
+    public static ExpenseCreatedEvent Random() =>
+        new ExpenseCreatedEventMother().Build();
 }

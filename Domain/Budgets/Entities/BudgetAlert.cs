@@ -1,4 +1,6 @@
-﻿namespace Domain.Budget;
+﻿using Domain.Shared.Base;
+
+namespace Domain.Budget;
 
 public abstract class BudgetAlert
 {
@@ -6,7 +8,7 @@ public abstract class BudgetAlert
 	{
 	}
 
-	public bool IsTriggered => Eval();
+	public abstract AlertEvent GenerateEvent(Budget budget);
 
-	protected abstract bool Eval();
+	public abstract bool Eval(Budget budget);
 }

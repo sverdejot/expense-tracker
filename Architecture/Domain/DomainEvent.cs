@@ -16,6 +16,8 @@ public class TestDomainEvent
             .ImplementInterface(typeof(IDomainEvent))
             .Should()
             .BeSealed()
+            .Or()
+            .BeAbstract()
             .GetResult()
             .IsSuccessful;
 

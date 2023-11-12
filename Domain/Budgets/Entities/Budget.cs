@@ -56,7 +56,22 @@ public class Budget : AggregateRoot<Budget>
 			RecordEvent(new BudgetLimitExceededEvent(BudgetId: Id.Value, AmountLimit: MaximumAmount.Amount, CurrentAmount: currentTotalAmount));
 		}
 
+		EvaluateAlerts();
+
 		Records.Add(record);
+	}
+
+	private void EvaluateAlerts()
+	{
+		var events = Alerts
+			.Where(alert => alert.Eval(this))
+			.Select(alert => alert.GenerateEvent(this))
+			.ToList();
+		
+		foreach (var evnt in events)
+		{
+			RecordEvent(evnt);
+		}
 	}
 }
 

@@ -58,4 +58,10 @@ public class BudgetMother
             (faker, budget) => BudgetRecordMother.RecordListUpToQuantity(budget.MaximumAmount.Amount));
         return this;
     }
+
+    public BudgetMother WithAlert(BudgetAlert alert)
+    {
+        faker.FinishWith((faker, budget) => budget.Alerts.Add(alert));
+        return this;
+    }
 }

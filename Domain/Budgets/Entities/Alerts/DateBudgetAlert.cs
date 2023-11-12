@@ -16,6 +16,13 @@ public class DateBudgetAlert : BudgetAlert
     public static DateBudgetAlert Create(DateTime alertingDate) =>
         new(alertingDate);
 
-    protected override bool Eval() =>
+    public override bool Eval(Budget.Budget budget) =>
         DateTime.Now > AlertingDate;
+
+    public override AlertEvent GenerateEvent(Budget.Budget budget)
+        => new DateOverdueAlertEvent() { 
+            FiredAt = DateTime.Now,
+            AlertingDate = AlertingDate,
+            BudgetId = budget.Id.Value
+        };
 }
