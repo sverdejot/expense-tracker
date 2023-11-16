@@ -1,5 +1,6 @@
 ﻿using Domain.Budgets;
 using Application.Shared.Command;
+using Domain;
 
 namespace Application.Budgets;
 
@@ -17,8 +18,9 @@ public class CreateBudgetCommandHandler : ICommandHandler<CreateBudgetCommand>
         var id = BudgetId.Create(request.Id);
         var amount = BudgetAmount.Create(request.MaximumAmount, request.Currency);
         var period = BudgetPeriod.CreateMonthly();
+        var owner = UserId.Create(request.Owner);
 
-        var budget = Budget.Create(id, amount, period);
+        var budget = Budget.Create(id, amount, period, owner);
 
         await _budgetRepository.Add(budget);
     }

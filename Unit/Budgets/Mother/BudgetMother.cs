@@ -1,9 +1,7 @@
-﻿using System.Diagnostics.Tracing;
-using Bogus;
+﻿using Bogus;
 using Bogus.Extensions.Norway;
 using Domain.Budgets;
 using Domain.Shared.ValueObjects;
-using Unit.Random;
 
 namespace Unit;
 

@@ -2,4 +2,4 @@
 
 namespace Domain.Budgets;
 
-public sealed record BudgetCreatedEvent(Guid Id) : IDomainEvent;
+public sealed record BudgetCreatedEvent(Guid Id, Guid OwnerId) : IDomainEvent;

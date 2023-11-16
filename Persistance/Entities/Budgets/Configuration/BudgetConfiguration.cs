@@ -1,4 +1,5 @@
-﻿using Domain.Budgets;
+﻿using Domain;
+using Domain.Budgets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Newtonsoft.Json;
@@ -15,6 +16,11 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
             .HasConversion(
                 src => src.Value,
                 raw => BudgetId.Create(raw));
+        
+        builder.Property(budget => budget.Owner)
+            .HasConversion(
+                src => src.Value,
+                raw => UserId.Create(raw));
 
         builder.ComplexProperty(budget => budget.MaximumAmount);
 

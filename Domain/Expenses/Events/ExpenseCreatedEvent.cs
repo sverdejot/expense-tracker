@@ -2,7 +2,7 @@
 
 namespace Domain.Expenses;
 
-public sealed record ExpenseCreatedEvent : IDomainEvent 
+public sealed record ExpenseCreatedEvent : IDomainEvent
 {
     public Guid Id { get; set; }
 
@@ -10,16 +10,17 @@ public sealed record ExpenseCreatedEvent : IDomainEvent
 
     public DateTime CreatedAt { get; set; }
 
-
+    public Guid User { get; set; }
+    
     public ExpenseCreatedEvent()
     {
     }
-    
-    public ExpenseCreatedEvent(Guid id, Decimal amount, DateTime createdAt) 
+
+    public ExpenseCreatedEvent(Guid id, Decimal amount, DateTime createdAt, Guid user)
     {
         Id = id;
         Amount = amount;
         CreatedAt = createdAt;
-    }
-
+        User = user;
+    } 
 }

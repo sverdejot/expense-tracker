@@ -3,10 +3,8 @@ using Domain;
 using Domain.Budgets;
 using Domain.Expenses;
 using FluentAssertions;
-using Microsoft.VisualBasic;
 using Moq;
 using Moq.AutoMock;
-using Unit.Random;
 
 namespace Unit;
 
@@ -61,7 +59,7 @@ public class TestExpenseCreatedEventHandler
             .Setup(repo => repo.FindAll())
             .ReturnsAsync(new List<Budget>() { budget });
 
-        var evnt = new ExpenseCreatedEvent(Guid.NewGuid(), 100, DateTime.Now);
+        var evnt = new ExpenseCreatedEvent(Guid.NewGuid(), 100, DateTime.Now, Guid.NewGuid());
 
         // When
         await handler.Handle(evnt);
@@ -72,7 +70,7 @@ public class TestExpenseCreatedEventHandler
     }
 
     [Fact]
-    public async void Handle_ShouldThrowException_WhenBudgetIsBlocked()
+    public void Handle_ShouldThrowException_WhenBudgetIsBlocked()
     {
         // Given
         var budget = new BudgetMother()
@@ -84,7 +82,7 @@ public class TestExpenseCreatedEventHandler
             .Setup(repo => repo.FindAll())
             .ReturnsAsync(new List<Budget>() { budget });
 
-        var evnt = new ExpenseCreatedEvent(Guid.NewGuid(), 1_000, DateTime.Now);
+        var evnt = new ExpenseCreatedEvent(Guid.NewGuid(), 1_000, DateTime.Now, Guid.NewGuid());
 
         // When
         var handle = async () => await handler.Handle(evnt);

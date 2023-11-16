@@ -1,4 +1,5 @@
-﻿using Domain.Expenses;
+﻿using Domain;
+using Domain.Expenses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Newtonsoft.Json;
@@ -20,6 +21,11 @@ public class ExpenseConfiguration : IEntityTypeConfiguration<Expense>
             .HasConversion(
                 src => src.Value,
                 raw => ExpenseId.Create(raw));
+
+        builder.Property(expense => expense.User)
+            .HasConversion(
+                src => src.Value,
+                raw => UserId.Create(raw));
 
         builder.ComplexProperty(expense => expense.Amount);
 

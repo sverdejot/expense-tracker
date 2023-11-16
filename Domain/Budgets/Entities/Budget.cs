@@ -7,6 +7,8 @@ public class Budget : AggregateRoot<Budget>
 	#region Properties
 	public BudgetId Id { get; private set; }
 
+	public UserId Owner { get; private set; }
+
 	public BudgetAmount MaximumAmount { get; private set; }
 
 	private decimal RemainingAmountAfter(Decimal amount) => MaximumAmount.Amount - Records.Sum(r => r.Amount) - amount;
@@ -27,18 +29,19 @@ public class Budget : AggregateRoot<Budget>
 	{
 	}
 
-	protected Budget(BudgetId id, BudgetAmount maximumAmount, BudgetPeriod period)
+	protected Budget(BudgetId id, BudgetAmount maximumAmount, BudgetPeriod period, UserId owner)
 	{
 		Id = id;
 		MaximumAmount = maximumAmount;
 		Period = period;
+		Owner = owner;
 	}
 
-	public static Budget Create(BudgetId id, BudgetAmount maximumAmount, BudgetPeriod period)
+	public static Budget Create(BudgetId id, BudgetAmount maximumAmount, BudgetPeriod period, UserId owner)
 	{
-		var budget = new Budget(id, maximumAmount, period);
+		var budget = new Budget(id, maximumAmount, period, owner);
 
-		budget.RecordEvent(new BudgetCreatedEvent(id.Value));
+		budget.RecordEvent(new BudgetCreatedEvent(id.Value, owner.Value));
 
 		return budget;
 	}

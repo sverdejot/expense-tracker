@@ -25,7 +25,8 @@ public class TestCreateBudgetCommandHandler
         var command = new CreateBudgetCommand(
             expectedBudget.Id.Value,
             expectedBudget.MaximumAmount.Amount,
-            expectedBudget.MaximumAmount.Currency
+            expectedBudget.MaximumAmount.Currency,
+            Guid.NewGuid()
         );
 
         // When

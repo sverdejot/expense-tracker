@@ -1,9 +1,6 @@
-﻿using System.Net;
-using System.Reflection.Metadata.Ecma335;
-using Bogus;
+﻿using Bogus;
 using Domain.Expenses;
 using Domain.Shared.ValueObjects;
-using Unit.Random;
 
 namespace Unit;
 

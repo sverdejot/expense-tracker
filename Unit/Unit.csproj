@@ -36,6 +36,5 @@
     <Folder Include="Expenses\Handlers\" />
     <Folder Include="Expenses\Random\" />
     <Folder Include="Expenses\Mother\" />
-    <Folder Include="Random/" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using Domain;
 using Domain.Expenses;
 
 namespace Unit;
@@ -6,6 +7,7 @@ namespace Unit;
 public class ExpenseCreatedEventMother
 {
     private readonly Faker<ExpenseCreatedEvent> faker = new Faker<ExpenseCreatedEvent>()
+        .RuleFor(evnt => evnt.User, faker => faker.Random.Guid())
         .RuleFor(evnt => evnt.Id, faker => faker.Random.Guid())
         .RuleFor(evnt => evnt.Amount, faker => faker.Random.Decimal(max: 10_0))
         .RuleFor(evnt => evnt.CreatedAt, faker => faker.Date.Past());
