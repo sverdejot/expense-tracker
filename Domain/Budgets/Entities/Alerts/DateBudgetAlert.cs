@@ -1,6 +1,4 @@
-﻿using Domain.Budgets;
-
-namespace Domain;
+﻿namespace Domain.Budgets;
 
 public class DateBudgetAlert : BudgetAlert
 {
@@ -16,10 +14,10 @@ public class DateBudgetAlert : BudgetAlert
     public static DateBudgetAlert Create(DateTime alertingDate) =>
         new(alertingDate);
 
-    public override bool Eval(Budget.Budget budget) =>
+    public override bool Eval(Budget budget) =>
         DateTime.Now > AlertingDate;
 
-    public override AlertEvent GenerateEvent(Budget.Budget budget)
+    public override AlertEvent GenerateEvent(Budget budget)
         => new DateOverdueAlertEvent()
         {
             FiredAt = DateTime.Now,

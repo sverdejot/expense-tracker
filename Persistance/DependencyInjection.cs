@@ -11,13 +11,14 @@ using Persistance.Expenses;
 using Persistance.Budgets;
 using Domain.Expenses;
 using Domain.Budgets;
+using Domain;
 
 namespace Persistance;
 public static class DependencyInjection
 {
     public static readonly Assembly Assembly = typeof(DependencyInjection).Assembly;
-    public static IServiceCollection AddPersistance(this IServiceCollection services, IConfiguration configuration)
-    {
+    public static IServiceCollection AddPersistance(this IServiceCollection services)
+    {        
         services.AddDbContext<ApplicationDbContext>((serviceProvider, dbContextBuilder) =>
         {
             var databaseOptions = serviceProvider.GetService<IOptions<DatabaseOptions>>()!.Value;
@@ -57,6 +58,7 @@ public static class DependencyInjection
 
         services.AddScoped<IExpenseRepository, ExpenseRepository>();
         services.AddScoped<IBudgetRepository, BudgetRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddQuartzHostedService();
 

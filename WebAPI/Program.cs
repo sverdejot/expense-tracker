@@ -1,5 +1,6 @@
 using Application;
 using Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Persistance;
 using Persistance.Options;
 using Serilog;
@@ -8,15 +9,15 @@ using WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Load configuration
-builder.Services
-    .ConfigureOptions<DatabaseOptionsSetup>();
+builder.Services.ConfigureOptions<DatabaseOptionsSetup>();
+builder.Services.ConfigureOptions<JwtOptionsSetup>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
 
 // Add layers
 builder.Services
     .AddApplication()
-    .AddPersistance(builder.Configuration)
-    .AddInfrastructure(builder.Configuration);
+    .AddPersistance()
+    .AddInfrastructure();
 
 // Add services to the container.
 builder.Services.AddMiddleware();
@@ -44,6 +45,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
 app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

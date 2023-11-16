@@ -1,7 +1,7 @@
 ﻿using Application.Shared.Command;
 using Domain.Budgets;
 
-namespace Application;
+namespace Application.Budgets;
 
 public class DeleteBudgetCommandHandler : ICommandHandler<DeleteBudgetCommand>
 {
