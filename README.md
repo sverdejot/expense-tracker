@@ -25,7 +25,7 @@ Expense Tracker is a .NET WebAPI project built on Clean Architecture and Domain-
 
 ## Installation
 
-To set up the project, make sure you have [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet/7.0) installed. Also, install `Makefile` by:
+To set up the project, make sure you have [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) installed. Also, install `Makefile` by:
 
 ```bash
 # Windows
