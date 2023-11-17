@@ -2,7 +2,7 @@
 using Domain;
 using Domain.Groups;
 
-namespace Application;
+namespace Application.Groups;
 
 public class CreateGroupCommandHandler : ICommandHandler<CreateGroupCommand>
 {

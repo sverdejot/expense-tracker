@@ -1,6 +1,5 @@
 ﻿using Domain.Shared.Base;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Persistance.Jobs;
@@ -12,6 +11,7 @@ using Persistance.Budgets;
 using Domain.Expenses;
 using Domain.Budgets;
 using Domain;
+using Domain.Groups;
 
 namespace Persistance;
 public static class DependencyInjection
@@ -59,6 +59,7 @@ public static class DependencyInjection
         services.AddScoped<IExpenseRepository, ExpenseRepository>();
         services.AddScoped<IBudgetRepository, BudgetRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IGroupRepository, GroupRepository>();
 
         services.AddQuartzHostedService();
 

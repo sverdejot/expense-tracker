@@ -42,11 +42,11 @@ if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
+
 app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
 
 app.UseAuthorization();
 

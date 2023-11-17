@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Application.Groups;
 using Domain.Groups;
 using Moq;
 using Moq.AutoMock;

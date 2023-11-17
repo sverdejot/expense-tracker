@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using MapsterMapper;
 
 namespace Unit;
 
@@ -9,4 +10,6 @@ public static class TestingExtensions
         faker.CustomInstantiator(f =>
             Activator.CreateInstance(typeof(T), nonPublic: true) as T)
          as Faker<T>;
+    public static Mapper GetMapper() =>
+        new Mapper(Application.DependencyInjection.GetMappingConfiguration());
 }

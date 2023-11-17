@@ -1,10 +1,17 @@
 global using Xunit;
 using MapsterMapper;
+using MediatR;
+using Moq.AutoMock;
 
-public static class TestingExtensions
+public class TestTheory<T>
+    where T : class
 {
-    public static Mapper GetMapper()
+    protected AutoMocker mocker = new AutoMocker();
+
+    protected readonly T handler;
+
+    protected TestTheory()
     {
-        return new Mapper(Application.DependencyInjection.GetMappingConfiguration());
+        handler = mocker.CreateInstance<T>();
     }
 }

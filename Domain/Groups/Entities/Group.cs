@@ -12,7 +12,7 @@ public class Group : AggregateRoot<Group>
 
     public HashSet<UserId> Members { get; private set; } = new();
 
-    public List<GroupRecords> Records { get; private set; } = new();
+    public List<GroupRecord> Records { get; private set; } = new();
 
     private Group()
     {
@@ -20,6 +20,9 @@ public class Group : AggregateRoot<Group>
 
     protected Group(GroupId id, GroupName name, UserId admin)
     {
+        Id = id;
+        Name = name;
+        Admin = admin;
     }
 
     public static Group Create(GroupId id, GroupName name, UserId admin)

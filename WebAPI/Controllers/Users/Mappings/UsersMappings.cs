@@ -9,5 +9,9 @@ public class UsersMappings : IRegister
     {
         config.NewConfig<string, LoginCommand>()
             .Map(command => command, request => request);
+
+        config.NewConfig<(Guid id, CreateUserRequest request), CreateUserCommand>()
+            .Map(command => command.Id, request => request.id)
+            .Map(command => command.Mail, request => request.request.Mail);
     }
 }
