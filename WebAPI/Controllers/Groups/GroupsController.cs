@@ -1,4 +1,5 @@
-﻿using Application.Groups;
+﻿using Application;
+using Application.Groups;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +18,16 @@ public class GroupsController : ApiController
     }
 
     [Authorize]
+    [HttpGet]
+    public async Task<ActionResult> GetGroups()
+    {
+        var query = new FindAllGroupsQuery();
+
+        var response = await _sender.Send(query);
+
+        return Ok(response);
+    }
+
     [HttpPut("{id:guid}")]
     public async Task<ActionResult> CreateGroup([FromRoute]Guid id, [FromBody]CreateGroupRequest request)
     {
@@ -25,5 +36,15 @@ public class GroupsController : ApiController
         await _sender.Send(command);
 
         return Created($"api/groups/{id}", string.Empty);
+    }
+
+    [HttpPut("{id:guid}/join")]
+    public async Task<ActionResult> JoinGroup([FromRoute] Guid id, [FromBody] JoinGroupRequest request)
+    {
+        var command = _mapper.Map<JoinGroupCommand>((id, request));
+
+        await _sender.Send(command);
+
+        return Ok();
     }
 }

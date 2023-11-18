@@ -32,6 +32,6 @@ public class UsersController : ApiController
 
         var token = await _sender.Send(command);
 
-        return Ok(token);
+        return Ok(new { token =  token});
     }
 }

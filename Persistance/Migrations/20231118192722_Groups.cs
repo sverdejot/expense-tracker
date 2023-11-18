@@ -25,24 +25,6 @@ namespace Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GroupMembers",
-                columns: table => new
-                {
-                    Value = table.Column<Guid>(type: "uuid", nullable: false),
-                    GroupId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GroupMembers", x => x.Value);
-                    table.ForeignKey(
-                        name: "FK_GroupMembers_Group_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "Group",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GroupRecord",
                 columns: table => new
                 {
@@ -56,6 +38,24 @@ namespace Persistance.Migrations
                     table.PrimaryKey("PK_GroupRecord", x => x.GroupRecordId);
                     table.ForeignKey(
                         name: "FK_GroupRecord_Group_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Group",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MemberId",
+                columns: table => new
+                {
+                    Value = table.Column<Guid>(type: "uuid", nullable: false),
+                    GroupId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MemberId", x => x.Value);
+                    table.ForeignKey(
+                        name: "FK_MemberId_Group_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Group",
                         principalColumn: "Id",
@@ -88,13 +88,13 @@ namespace Persistance.Migrations
                 column: "Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GroupMembers_GroupId",
-                table: "GroupMembers",
+                name: "IX_GroupRecord_GroupId",
+                table: "GroupRecord",
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GroupRecord_GroupId",
-                table: "GroupRecord",
+                name: "IX_MemberId_GroupId",
+                table: "MemberId",
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
@@ -107,7 +107,7 @@ namespace Persistance.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GroupMembers");
+                name: "MemberId");
 
             migrationBuilder.DropTable(
                 name: "RecordPercentage");

@@ -36,10 +36,10 @@ public class Group : AggregateRoot<Group>
 
     public void Join(UserId user)
     {
-        if (Members.Contains(user) is true)
+        if (Members.Contains(user) is true || user == Admin)
             throw new AlreadyMemberException(user, this);
 
         Members.Add(user);
-        RecordEvent(new MemberJoinedEvent(user.Value, this.Id.Value));
+        RecordEvent(new MemberJoinedEvent(user.Value, Id.Value));
     }
 }

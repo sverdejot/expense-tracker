@@ -47,5 +47,7 @@
     <Folder Include="Expenses\Queries\Mappings\" />
     <Folder Include="Expenses\Queries\Results\" />
     <Folder Include="Expenses\Queries\Handlers\" />
+    <Folder Include="Groups/Commands/" />
+    <Folder Include="Groups/Queries/Responses/" />
   </ItemGroup>
 </Project>

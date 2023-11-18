@@ -14,12 +14,13 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
         builder.Property(group => group.Id)
             .HasConversion(
                 src => src.Value,
-                raw => GroupId.Create(raw));
+                raw => GroupId.Create(raw))
+            .ValueGeneratedNever();
 
         builder.Property(group => group.Admin)
             .HasConversion(
                 src => src.Value,
-                raw => UserId.Create(raw));
+                raw => MemberId.Create(raw));
         
         builder.Property(group => group.Name)
             .HasMaxLength(50)
@@ -27,13 +28,14 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
                 src => src.Value,
                 raw => GroupName.Create(raw));
 
-        builder.OwnsMany(
-            group => group.Members, 
+        builder.OwnsMany(group => group.Members,
             membersBuilder => {
-                // TODO: review how to change this name from Value to MemberId
-                membersBuilder.HasKey(memberId => memberId.Value);
-                membersBuilder.ToTable("GroupMembers");
+                membersBuilder.WithOwner().HasForeignKey("GroupId");
+                membersBuilder.HasKey(member => member.Value);
+                membersBuilder.Property(member => member.Value)
+                    .ValueGeneratedNever();
             });
+            
 
         builder.OwnsMany(group => group.Records,
             recordBuilder => {

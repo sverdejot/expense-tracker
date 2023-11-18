@@ -9,8 +9,6 @@ public class JoinGroupCommandHandler : ICommandHandler<JoinGroupCommand>
 {
     private readonly IGroupRepository _groupRepository;
 
-    private readonly ISender sender;
-
     public JoinGroupCommandHandler(IGroupRepository groupRepository)
     {
         _groupRepository = groupRepository;
