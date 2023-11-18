@@ -20,7 +20,7 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
         builder.Property(group => group.Admin)
             .HasConversion(
                 src => src.Value,
-                raw => MemberId.Create(raw));
+                raw => UserId.Create(raw));
         
         builder.Property(group => group.Name)
             .HasMaxLength(50)

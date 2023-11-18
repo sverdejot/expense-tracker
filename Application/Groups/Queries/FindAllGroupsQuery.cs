@@ -2,4 +2,4 @@
 
 namespace Application.Groups;
 
-public class FindAllGroupsQuery() : IQuery<List<GroupDTO>>;
+public sealed record FindAllGroupsQuery() : IQuery<List<GroupDTO>>;
