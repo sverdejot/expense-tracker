@@ -25,5 +25,17 @@ public class GroupRecord : Entity<GroupRecord>
     }
 
     public static GroupRecord Create(GroupRecordId id, Decimal amount, UserId creator, List<RecordPercentage> percentages)
-        => new(id, amount, creator, percentages);
+    {
+        CheckTotalPercentage(percentages);
+        
+        return new(id, amount, creator, percentages);;
+    }
+
+    private static void CheckTotalPercentage(List<RecordPercentage> percentages) 
+    {
+        var totalPercentage = percentages.Select(percentage => percentage.Percentage).Sum();
+
+        if (totalPercentage is not 1)
+            throw new InvalidTotalPercentageException(percentages);
+    }
 }

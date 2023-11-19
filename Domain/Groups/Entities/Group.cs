@@ -36,7 +36,7 @@ public class Group : AggregateRoot<Group>
 
     public void Join(UserId user)
     {
-        if (Members.Contains(user) is true || user == Admin)
+        if (IsMember(user))
             throw new AlreadyMemberException(user, this);
 
         Members.Add(user);
@@ -46,6 +46,10 @@ public class Group : AggregateRoot<Group>
     public void AddRecord(GroupRecord record)
     {
         Records.Add(record);
+
+        if (!IsMember(record.Creator))
+            throw new NotMemberException(record.Creator, this);
+
         RecordEvent(new RecordAddedEvent(
             Id.Value, 
             record.Amount, 
@@ -55,4 +59,6 @@ public class Group : AggregateRoot<Group>
                     percentage => percentage.Percentage)));
     }
     
+    private bool IsMember(UserId user) => 
+        Members.Contains(user) is true || user == Admin;
 }
