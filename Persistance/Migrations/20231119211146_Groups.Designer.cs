@@ -13,7 +13,7 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231118192722_Groups")]
+    [Migration("20231119211146_Groups")]
     partial class Groups
     {
         /// <inheritdoc />
@@ -279,8 +279,7 @@ namespace Persistance.Migrations
                 {
                     b.OwnsMany("Domain.Groups.GroupRecord", "Records", b1 =>
                         {
-                            b1.Property<Guid>("GroupRecordId")
-                                .ValueGeneratedOnAdd()
+                            b1.Property<Guid>("Id")
                                 .HasColumnType("uuid");
 
                             b1.Property<decimal>("Amount")
@@ -292,7 +291,7 @@ namespace Persistance.Migrations
                             b1.Property<Guid>("GroupId")
                                 .HasColumnType("uuid");
 
-                            b1.HasKey("GroupRecordId");
+                            b1.HasKey("Id");
 
                             b1.HasIndex("GroupId");
 
@@ -329,7 +328,7 @@ namespace Persistance.Migrations
                             b1.Navigation("Percentages");
                         });
 
-                    b.OwnsMany("Domain.MemberId", "Members", b1 =>
+                    b.OwnsMany("Domain.UserId", "Members", b1 =>
                         {
                             b1.Property<Guid>("Value")
                                 .HasColumnType("uuid");
@@ -341,7 +340,7 @@ namespace Persistance.Migrations
 
                             b1.HasIndex("GroupId");
 
-                            b1.ToTable("MemberId");
+                            b1.ToTable("UserId");
 
                             b1.WithOwner()
                                 .HasForeignKey("GroupId");

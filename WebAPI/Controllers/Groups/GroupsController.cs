@@ -47,4 +47,14 @@ public class GroupsController : ApiController
 
         return Ok();
     }
+    
+    [HttpPut("{id:guid}/records/{recordId:guid}")]
+    public async Task<ActionResult> CreateRecord([FromRoute] Guid id, [FromRoute] Guid recordId, [FromBody] CreateRecordRequest request)
+    {
+        var command = _mapper.Map<CreateRecordCommand>((id, recordId, request));
+
+        await _sender.Send(command);
+
+        return Created($"api/groups/{id}/record/{recordId}", string.Empty);
+    }
 }

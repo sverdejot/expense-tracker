@@ -39,11 +39,16 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
 
         builder.OwnsMany(group => group.Records,
             recordBuilder => {
-                var identityProperty = "GroupRecordId";
-                recordBuilder.Property<Guid>(identityProperty)
-                    .ValueGeneratedOnAdd();
+                recordBuilder.WithOwner()
+                    .HasForeignKey("GroupId");
 
-                recordBuilder.HasKey(identityProperty);
+                recordBuilder.Property(record => record.Id)
+                    .HasConversion(
+                        src => src.Value,
+                        raw => GroupRecordId.Create(raw))
+                    .ValueGeneratedNever();
+
+                recordBuilder.HasKey(record => record.Id);
 
                 
                 recordBuilder.Property(record => record.Creator)

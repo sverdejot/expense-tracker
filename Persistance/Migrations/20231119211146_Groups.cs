@@ -28,14 +28,14 @@ namespace Persistance.Migrations
                 name: "GroupRecord",
                 columns: table => new
                 {
-                    GroupRecordId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Amount = table.Column<decimal>(type: "numeric", nullable: false),
                     Creator = table.Column<Guid>(type: "uuid", nullable: false),
                     GroupId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroupRecord", x => x.GroupRecordId);
+                    table.PrimaryKey("PK_GroupRecord", x => x.Id);
                     table.ForeignKey(
                         name: "FK_GroupRecord_Group_GroupId",
                         column: x => x.GroupId,
@@ -45,7 +45,7 @@ namespace Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MemberId",
+                name: "UserId",
                 columns: table => new
                 {
                     Value = table.Column<Guid>(type: "uuid", nullable: false),
@@ -53,9 +53,9 @@ namespace Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MemberId", x => x.Value);
+                    table.PrimaryKey("PK_UserId", x => x.Value);
                     table.ForeignKey(
-                        name: "FK_MemberId_Group_GroupId",
+                        name: "FK_UserId_Group_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Group",
                         principalColumn: "Id",
@@ -78,7 +78,7 @@ namespace Persistance.Migrations
                         name: "FK_RecordPercentage_GroupRecord_GroupRecordId",
                         column: x => x.GroupRecordId,
                         principalTable: "GroupRecord",
-                        principalColumn: "GroupRecordId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -93,24 +93,24 @@ namespace Persistance.Migrations
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MemberId_GroupId",
-                table: "MemberId",
-                column: "GroupId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RecordPercentage_GroupRecordId",
                 table: "RecordPercentage",
                 column: "GroupRecordId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserId_GroupId",
+                table: "UserId",
+                column: "GroupId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MemberId");
+                name: "RecordPercentage");
 
             migrationBuilder.DropTable(
-                name: "RecordPercentage");
+                name: "UserId");
 
             migrationBuilder.DropTable(
                 name: "GroupRecord");

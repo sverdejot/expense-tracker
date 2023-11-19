@@ -16,5 +16,11 @@ public class GroupsMappings : IRegister
         config.NewConfig<(Guid id, JoinGroupRequest request), JoinGroupCommand>()
             .Map(command => command.GroupId, request => request.id)
             .Map(command => command.NewMember, request => request.request.Member);
+
+        config.NewConfig<(Guid groupId, Guid recordId, CreateRecordRequest request), CreateRecordCommand>()
+            .Map(command => command.Group, request => request.groupId)
+            .Map(command => command.Id, request => request.recordId)
+            .Map(command => command.Percentages, request => request.request.Percentages)
+            .Map(command => command.TotalAmount, request => request.request.Amount);
     }
 }

@@ -42,4 +42,17 @@ public class Group : AggregateRoot<Group>
         Members.Add(user);
         RecordEvent(new MemberJoinedEvent(user.Value, Id.Value));
     }
+
+    public void AddRecord(GroupRecord record)
+    {
+        Records.Add(record);
+        RecordEvent(new RecordAddedEvent(
+            Id.Value, 
+            record.Amount, 
+            record.Percentages.
+                ToDictionary(
+                    percentage => percentage.Member.Value, 
+                    percentage => percentage.Percentage)));
+    }
+    
 }
