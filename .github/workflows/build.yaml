@@ -3,6 +3,7 @@ on:
     branches:
       - main
 
+name: Unit and Architectural tests
 jobs:
   build:
     name: Build project and run Architectural and Unit testing

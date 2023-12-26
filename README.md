@@ -1,6 +1,12 @@
+<p align="center">
+  <img width="500" height="500" src="https://assets.sverdejot.dev/expense-tracker/header.png">
+</p>
+
 # Expense Tracker
 
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![example workflow](https://github.com/sverdejot/expense-tracker/actions/workflows/build.yaml/badge.svg)
 
 ## Description
 
