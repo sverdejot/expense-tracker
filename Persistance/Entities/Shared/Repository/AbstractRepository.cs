@@ -5,7 +5,7 @@ using Persistance.Criteria;
 
 namespace Persistance.Shared;
 
-internal abstract class AbstractRepository<TEntity>
+internal abstract class AbstractRepository<TEntity> : IRepository<TEntity>
     where TEntity : AggregateRoot<TEntity>
 {
     protected readonly ApplicationDbContext _context;
