@@ -6,6 +6,20 @@
 
 Expense Tracker is a .NET WebAPI project built on Clean Architecture and Domain-Driven Design (DDD) principles. It provides a platform for managing expenses, allowing users to track their spending efficiently.
 
+## Introduction
+
+Expense Tracker is built on top of DDD principles. Thus, it is divided into bounded-contexts, aggregates, entities and value objects. 
+
+Currently, only one bounded context is explored, which covers the end-user modeling and use cases. It can be modeled as:
+
+![Expense Tracker C4 diagram](https://assets.sverdejot.dev/expense-tracker/diagram.png)
+
+Currently, it covers:
+
+* **_Expense_**: creating new expenses to track spending.
+* **_Budgets_**: create budget to track maximum spendings, being able to attach multiple types of alerts to this budgets. Expenses will automatically be included into every active Budget.
+* **_Groups_**: track shared spendings with multiple dividing options like percentages, equally and multi-currency.
+
 ## Technologies
 
 - .NET 8.0
