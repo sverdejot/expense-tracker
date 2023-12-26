@@ -4,14 +4,9 @@ using Domain;
 
 namespace Application.Budgets;
 
-public class CreateBudgetCommandHandler : ICommandHandler<CreateBudgetCommand>
+public class CreateBudgetCommandHandler(IBudgetRepository budgetRepository) : ICommandHandler<CreateBudgetCommand>
 {
-    private readonly IBudgetRepository _budgetRepository;
-
-    public CreateBudgetCommandHandler(IBudgetRepository budgetRepository)
-    {
-        _budgetRepository = budgetRepository;
-    }
+    private readonly IBudgetRepository _budgetRepository = budgetRepository;
 
     public async Task Handle(CreateBudgetCommand request, CancellationToken cancellationToken = default)
     {

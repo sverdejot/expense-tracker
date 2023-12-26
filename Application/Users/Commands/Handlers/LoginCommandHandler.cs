@@ -4,17 +4,14 @@ using Domain;
 
 namespace Application;
 
-public sealed class LoginCommandHandler : ICommandHandler<LoginCommand, string>
+public sealed class LoginCommandHandler(
+    IUserRepository userRepository,
+    IIdentityService identityService) 
+        : ICommandHandler<LoginCommand, string>
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUserRepository _userRepository = userRepository;
 
-    private readonly IIdentityService _identityService;
-
-    public LoginCommandHandler(IUserRepository userRepository, IIdentityService identityService)
-    {
-        _userRepository = userRepository;
-        _identityService = identityService;
-    }
+    private readonly IIdentityService _identityService = identityService;
 
     public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken = default)
     {

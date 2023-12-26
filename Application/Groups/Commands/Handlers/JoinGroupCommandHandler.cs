@@ -5,14 +5,9 @@ using MediatR;
 
 namespace Application;
 
-public class JoinGroupCommandHandler : ICommandHandler<JoinGroupCommand>
+public class JoinGroupCommandHandler(IGroupRepository groupRepository) : ICommandHandler<JoinGroupCommand>
 {
-    private readonly IGroupRepository _groupRepository;
-
-    public JoinGroupCommandHandler(IGroupRepository groupRepository)
-    {
-        _groupRepository = groupRepository;
-    }
+    private readonly IGroupRepository _groupRepository = groupRepository;
 
     public async Task Handle(JoinGroupCommand request, CancellationToken cancellationToken = default)
     {

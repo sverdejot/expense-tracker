@@ -4,14 +4,9 @@ using Domain.Groups;
 
 namespace Application.Groups;
 
-public class CreateGroupCommandHandler : ICommandHandler<CreateGroupCommand>
+public class CreateGroupCommandHandler(IGroupRepository groupRepository) : ICommandHandler<CreateGroupCommand>
 {
-    private readonly IGroupRepository _groupRepository;
-
-    public CreateGroupCommandHandler(IGroupRepository groupRepository)
-    {
-        _groupRepository = groupRepository;
-    }
+    private readonly IGroupRepository _groupRepository = groupRepository;
 
     public async Task Handle(CreateGroupCommand request, CancellationToken cancellationToken = default)
     {

@@ -3,14 +3,9 @@ using Domain;
 
 namespace Application;
 
-public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
+public class CreateUserCommandHandler(IUserRepository userRepository) : ICommandHandler<CreateUserCommand>
 {
-    private readonly IUserRepository _userRepository;
-
-    public CreateUserCommandHandler(IUserRepository userRepository)
-    {
-        _userRepository = userRepository;
-    }
+    private readonly IUserRepository _userRepository = userRepository;
 
     public async Task Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {

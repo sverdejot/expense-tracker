@@ -3,14 +3,9 @@ using Domain.Budgets;
 
 namespace Application.Budgets;
 
-public class DeleteBudgetCommandHandler : ICommandHandler<DeleteBudgetCommand>
+public class DeleteBudgetCommandHandler(IBudgetRepository budgetRepository) : ICommandHandler<DeleteBudgetCommand>
 {
-    private readonly IBudgetRepository _budgetRepository;
-
-    public DeleteBudgetCommandHandler(IBudgetRepository budgetRepository)
-    {
-        _budgetRepository = budgetRepository;
-    }
+    private readonly IBudgetRepository _budgetRepository = budgetRepository;
 
     public async Task Handle(DeleteBudgetCommand request, CancellationToken cancellationToken = default)
     {

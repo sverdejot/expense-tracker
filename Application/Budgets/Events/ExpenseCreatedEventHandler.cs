@@ -4,14 +4,9 @@ using Domain.Expenses;
 
 namespace Application;
 
-public class ExpenseCreatedEventHandler : IEventHandler<ExpenseCreatedEvent>
+public class ExpenseCreatedEventHandler(IBudgetRepository budgetRepository) : IEventHandler<ExpenseCreatedEvent>
 {
-    private readonly IBudgetRepository _budgetRepository;
-
-    public ExpenseCreatedEventHandler(IBudgetRepository budgetRepository)
-    {
-        _budgetRepository = budgetRepository;
-    }
+    private readonly IBudgetRepository _budgetRepository = budgetRepository;
 
     public async Task Handle(ExpenseCreatedEvent notification, CancellationToken cancellationToken = default)
     {

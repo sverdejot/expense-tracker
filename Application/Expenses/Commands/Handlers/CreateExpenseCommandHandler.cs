@@ -4,14 +4,9 @@ using Domain.Expenses;
 
 namespace Application.Expenses.Commands;
 
-public class CreateExpenseCommandHandler : ICommandHandler<CreateExpenseCommand>
+public class CreateExpenseCommandHandler(IExpenseRepository expenseRepository) : ICommandHandler<CreateExpenseCommand>
 {
-    private readonly IExpenseRepository _expenseRepository;
-
-    public CreateExpenseCommandHandler(IExpenseRepository expenseRepository)
-    {
-        _expenseRepository = expenseRepository;
-    }
+    private readonly IExpenseRepository _expenseRepository = expenseRepository;
 
     public async Task Handle(CreateExpenseCommand request, CancellationToken cancellationToken = default)
     {
