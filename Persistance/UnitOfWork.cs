@@ -1,6 +1,12 @@
-﻿using Domain.Shared.Base;
+﻿using System.Dynamic;
+using System.Security.Cryptography;
+using Domain;
+using Domain.Shared.Base;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
 using Persistance.Outbox;
+using Quartz.Xml.JobSchedulingData20;
 
 namespace Persistance;
 
@@ -50,6 +56,19 @@ internal sealed class UnitOfWork : IUnitOfWork
 
     private void AuditChanges()
     {
-        // Save changes timestamps and other audit information
+        DateTime utcNow = DateTime.UtcNow;
+
+        _context.ChangeTracker.Entries<IAuditable>()
+            .Where(entity => entity.State is EntityState.Modified || entity.State is EntityState.Added)
+            .ToList()
+            .ForEach(entity => GetAuditProperty(entity).CurrentValue = utcNow);
     }
+
+    private static PropertyEntry GetAuditProperty(EntityEntry<IAuditable> entity) =>
+        entity.State switch
+        {
+            EntityState.Added => entity.Property(nameof(IAuditable.CreatedOnUtc)),
+            EntityState.Modified => entity.Property(nameof(IAuditable.ModifiedOnUtc)),
+            _ => throw new ArgumentOutOfRangeException(entity.State.ToString())
+        };
 }

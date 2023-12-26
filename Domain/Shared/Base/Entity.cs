@@ -1,7 +1,11 @@
 ﻿namespace Domain.Shared.Base;
 
-public abstract class Entity<T> : IEquatable<Entity<T>>
+public abstract class Entity<T> : IEquatable<Entity<T>>, IAuditable
 {
+    public DateTime ModifiedOnUtc { get; set; }
+
+    public DateTime CreatedOnUtc { get; set; }
+
     public bool Equals(Entity<T>? other)
     {
         if (other is null)
