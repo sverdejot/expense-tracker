@@ -6,7 +6,7 @@ services:
     volumes:
       - ./var/logs:/log
     ports:
-      - 80:5001
+      - 5001:5001
     depends_on:
       database:
         condition: service_healthy

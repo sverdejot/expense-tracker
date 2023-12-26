@@ -20,6 +20,7 @@ install: ## 🛠️ Restore dependencies
 .PHONY: build
 build: ## 🏗️ Build the project
 	@dotnet build $(PROJECT_DIR)/$(PROJECT_DIR).csproj -o $(BUILD_DIR)
+	@docker compose build
 
 .PHONY: generate-api-spec
 generate-api-spec: __install_swagger_cli ## 📝 Generate API spec using Swagger
@@ -37,3 +38,7 @@ clean: ## 🗑️ Clean up generated files
 .PHONY: test
 test: ## 🧪 Run tests
 	@dotnet test
+
+.PHONY: start
+start: build ## ▶️ Start application
+	@docker compose up
